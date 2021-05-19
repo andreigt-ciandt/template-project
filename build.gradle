@@ -1,0 +1,89 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'groovy'
+	id "io.freefair.lombok" version "6.0.0-m2"
+	id 'jacoco'
+}
+
+group = 'br.com.next.templates'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+	integrationTest {
+		java {
+			compileClasspath += main.output
+			runtimeClasspath += main.output
+			srcDir file('src/integration-test/java')
+		}
+		resources.srcDir file('src/integration-test/resources')
+	}
+}
+
+configurations {
+	integrationTestCompile.extendsFrom testCompile
+	integrationTestRuntime.extendsFrom testRuntime
+}
+
+ext {
+	set('azureVersion', "3.4.0")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-jersey'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.azure.spring:azure-spring-boot-starter'
+	implementation 'org.postgresql:postgresql'
+
+	testCompile "org.codehaus.groovy:groovy:3.0.7"
+	testCompile platform("org.spockframework:spock-bom:2.0-M4-groovy-3.0")
+	testCompile "org.spockframework:spock-core"
+	testCompile "org.spockframework:spock-junit4"
+
+	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	integrationTestImplementation 'org.postgresql:postgresql'
+	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.azure.spring:azure-spring-boot-bom:${azureVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+	testClassesDirs = sourceSets.test.output.classesDirs
+	classpath = sourceSets.test.runtimeClasspath
+}
+
+task integrationTest(type: Test) {
+	useJUnitPlatform()
+	testClassesDirs = sourceSets.integrationTest.output.classesDirs
+	classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+test {
+	jacoco {
+		excludes += ['br.com.next.templates.templateproject.TemplateProjectApplication']
+	}
+}
+jacocoTestReport {
+	reports {
+		xml {
+			enabled true
+		}
+
+		html {
+			enabled true
+		}
+	}
+}
