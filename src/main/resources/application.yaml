@@ -2,7 +2,15 @@
 server:
   port: 8080
 
+
 spring:
+  cloud:
+    azure:
+      appconfiguration:
+        name: abc
+        cache-expiration: 60000
+        stores:
+          - connection-string: Endpoint=https://template-trial-app-config.azconfig.io;Id=l2jT-l0-s0:XJ31CiHLUmsyZEQkelaA;Secret=tRCxSBHhZynDZ5Pjm6spBK8QQP7akIeZZ04ZhXFbleU=
   datasource:
     driver-class-name: org.postgresql.Driver
     username: teste@template-trial-postgres.postgres.database.azure.com
