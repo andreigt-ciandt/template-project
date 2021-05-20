@@ -24,11 +24,22 @@ sourceSets {
 		}
 		resources.srcDir file('src/integration-test/resources')
 	}
+
+	componentTest {
+		java {
+			compileClasspath += main.output
+			runtimeClasspath += main.output
+			srcDir file('src/component-test/java')
+		}
+		resources.srcDir file('src/component-test/resources')
+	}
 }
 
 configurations {
 	integrationTestCompile.extendsFrom testCompile
 	integrationTestRuntime.extendsFrom testRuntime
+	componentTestCompile.extendsFrom testCompile
+	componentTestRuntime.extendsFrom testRuntime
 }
 
 ext {
@@ -51,6 +62,8 @@ dependencies {
 	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	integrationTestImplementation 'org.postgresql:postgresql'
 	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	componentTestImplementation 'io.rest-assured:spring-mock-mvc:4.3.0'
 }
 
 dependencyManagement {
@@ -69,6 +82,12 @@ task integrationTest(type: Test) {
 	useJUnitPlatform()
 	testClassesDirs = sourceSets.integrationTest.output.classesDirs
 	classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+task componentTest(type: Test) {
+	useJUnitPlatform()
+	testClassesDirs = sourceSets.componentTest.output.classesDirs
+	classpath = sourceSets.componentTest.runtimeClasspath
 }
 
 test {
