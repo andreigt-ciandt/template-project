@@ -10,11 +10,11 @@ spring:
         name: abc
         cache-expiration: 60000
         stores:
-          - connection-string: Endpoint=https://template-trial-app-config.azconfig.io;Id=l2jT-l0-s0:XJ31CiHLUmsyZEQkelaA;Secret=tRCxSBHhZynDZ5Pjm6spBK8QQP7akIeZZ04ZhXFbleU=
+          - connection-string: Endpoint=https://template-trial-app-config-new.azconfig.io;Id=oUCt-l0-s0:cZhELXPBEWoetBayclrL;Secret=caaQCmJK3NObmy6uoVnVrROJboQOOeyjGbDzr/LSrjo=
 # TODO: Put a breakpoint on line 120 of com.microsoft.azure.spring.cloud.config.AppConfigurationProperties
 # to put the config above on beans startup:
 #ConfigStore configStore = new ConfigStore();
-#configStore.setConnectionString("Endpoint=https://template-trial-app-config.azconfig.io;Id=l2jT-l0-s0:XJ31CiHLUmsyZEQkelaA;Secret=tRCxSBHhZynDZ5Pjm6spBK8QQP7akIeZZ04ZhXFbleU=");
+#configStore.setConnectionString("Endpoint=https://template-trial-app-config-new.azconfig.io;Id=oUCt-l0-s0:cZhELXPBEWoetBayclrL;Secret=caaQCmJK3NObmy6uoVnVrROJboQOOeyjGbDzr/LSrjo=");
 #this.stores = Collections.singletonList(configStore);
 #this.cacheExpiration = Duration.ofMinutes(1L);
 
