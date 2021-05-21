@@ -8,3 +8,11 @@ spring:
     username: teste@template-trial-postgres.postgres.database.azure.com
     password: y0u5h0ldCh4ng3M3
     url: jdbc:postgresql://template-trial-postgres.postgres.database.azure.com:5432/template-postgres
+  data:
+    mongodb:
+      database: new-database
+      uri: mongodb://template-trial:vzt8DOs6q2oW4X1krEUFWo6pO7Ok0S9I0XRhgNSyJk9bgkDgZyYTLTV5Yq3T1RqnyZZRLniGNPyoaSNzRpDh1g==@template-trial.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@template-trial@
+  redis:
+    host: template-trial-redis-2.redis.cache.windows.net
+    port: 6379
+    password: WId+N2nzC1wteSU8JY0vGjpKzwCkgutekKLfzUqNfjQ=
