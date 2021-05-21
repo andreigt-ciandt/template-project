@@ -15,5 +15,10 @@ management:
   endpoints:
     web:
       exposure:
-        #TODO: need to secure loggers, heapdump, threaddump, metrics
         include: health, info, loggers, heapdump, threaddump, metrics
+
+application:
+  clients:
+    - username: admin
+      password: nimda
+      roles: ADMIN
