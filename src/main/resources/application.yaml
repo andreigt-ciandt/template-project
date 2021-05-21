@@ -1,4 +1,3 @@
-
 server:
   port: 8080
 
@@ -8,3 +7,13 @@ spring:
     username: teste@template-trial-postgres.postgres.database.azure.com
     password: y0u5h0ldCh4ng3M3
     url: jdbc:postgresql://template-trial-postgres.postgres.database.azure.com:5432/template-postgres
+
+management:
+  endpoint:
+    health:
+      show-details: when_authorized
+  endpoints:
+    web:
+      exposure:
+        #TODO: need to secure loggers, heapdump, threaddump, metrics
+        include: health, info, loggers, heapdump, threaddump, metrics

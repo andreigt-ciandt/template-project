@@ -5,6 +5,7 @@ plugins {
 	id 'groovy'
 	id "io.freefair.lombok" version "6.0.0-m2"
 	id 'jacoco'
+	id "com.gorylenko.gradle-git-properties" version "2.3.1" //	Show git properties on Actuator Info
 }
 
 group = 'br.com.next.templates'
@@ -105,4 +106,8 @@ jacocoTestReport {
 			enabled true
 		}
 	}
+}
+
+springBoot {
+	buildInfo() //Show build properties on Actuator Info
 }
