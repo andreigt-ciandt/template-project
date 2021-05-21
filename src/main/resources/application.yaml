@@ -11,6 +11,13 @@ spring:
         cache-expiration: 60000
         stores:
           - connection-string: Endpoint=https://template-trial-app-config.azconfig.io;Id=l2jT-l0-s0:XJ31CiHLUmsyZEQkelaA;Secret=tRCxSBHhZynDZ5Pjm6spBK8QQP7akIeZZ04ZhXFbleU=
+# TODO: Put a breakpoint on line 120 of com.microsoft.azure.spring.cloud.config.AppConfigurationProperties
+# to put the config above on beans startup:
+#ConfigStore configStore = new ConfigStore();
+#configStore.setConnectionString("Endpoint=https://template-trial-app-config.azconfig.io;Id=l2jT-l0-s0:XJ31CiHLUmsyZEQkelaA;Secret=tRCxSBHhZynDZ5Pjm6spBK8QQP7akIeZZ04ZhXFbleU=");
+#this.stores = Collections.singletonList(configStore);
+#this.cacheExpiration = Duration.ofMinutes(1L);
+
   datasource:
     driver-class-name: org.postgresql.Driver
     username: teste@template-trial-postgres.postgres.database.azure.com
