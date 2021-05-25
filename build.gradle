@@ -5,6 +5,7 @@ plugins {
 	id 'groovy'
 	id "io.freefair.lombok" version "6.0.0-m2"
 	id 'jacoco'
+	id "com.gorylenko.gradle-git-properties" version "2.3.1" //	Show git properties on Actuator Info
 }
 
 group = 'br.com.next.templates'
@@ -51,6 +52,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jersey'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'com.azure.spring:azure-spring-boot-starter'
 //	implementation 'org.ff4j:ff4j-spring-boot-starter:1.8.11'
 	implementation 'org.ff4j:ff4j-web:1.8.11'
@@ -111,4 +114,8 @@ jacocoTestReport {
 			enabled true
 		}
 	}
+}
+
+springBoot {
+	buildInfo() //Show build properties on Actuator Info
 }
