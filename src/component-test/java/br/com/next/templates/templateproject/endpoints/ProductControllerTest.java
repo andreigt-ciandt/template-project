@@ -1,53 +1,48 @@
 package br.com.next.templates.templateproject.endpoints;
 
-import br.com.next.templates.templateproject.entity.Product;
-import br.com.next.templates.templateproject.usecase.ListProducts;
-import br.com.next.templates.templateproject.usecase.RegisterProduct;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Arrays;
-import java.util.List;
-
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
 
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class ProductControllerTest {
-    private final ListProducts listProducts = Mockito.mock(ListProducts.class);
-    private final RegisterProduct registerProduct = Mockito.mock(RegisterProduct.class);
-    private ProductController controller;
-
-    @Before
-    public void init() {
-        this.controller = new ProductController(listProducts, registerProduct);
-    }
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
     @Test
-    public void testAllProductsWithProductsWillSuccessfully() {
-        List<Product> productList = Arrays.asList(
-                Product.builder()
-                        .id(1L)
-                        .name("product 1 name")
-                        .quantity(3)
-                        .build(),
-                Product.builder()
-                        .id(2L)
-                        .name("product 2 name")
-                        .quantity(2)
-                        .build());
-        Mockito.when(listProducts.execute()).thenReturn(productList);
-
+    public void testGetProductsWillReturnProducts() {
         RestAssuredMockMvc.
                 given()
-                .standaloneSetup(controller)
+                .webAppContextSetup(webApplicationContext)
                 .when()
                 .get("/products/")
                 .then()
                 .assertThat()
-                .statusCode(200)
-                .body("id", hasItems(1, 2))
-                .body("name", hasItems("product 1 name", "product 2 name"))
-                .body("quantity", hasItems(3, 2));
+                .statusCode(HttpStatus.OK.value())
+                .body("id", contains(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13))
+                .body("name", hasItems("teste produto", "teste produto 2", "teste produto 3"))
+                .body("quantity", hasItems(100));
+    }
+
+    @Test
+    public void testGetProductsWillReturnPayloadWithValidSchema() {
+        RestAssuredMockMvc.
+                given()
+                .webAppContextSetup(webApplicationContext)
+                .when()
+                .get("/products/")
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schema/get-products-schema.json"));
     }
 }
