@@ -41,6 +41,7 @@ configurations {
 	integrationTestRuntime.extendsFrom testRuntime
 	componentTestCompile.extendsFrom testCompile
 	componentTestRuntime.extendsFrom testRuntime
+	componentTestImplementation.extendsFrom testImplementation
 }
 
 ext {
@@ -65,7 +66,12 @@ dependencies {
 	integrationTestImplementation 'org.postgresql:postgresql'
 	integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	componentTestImplementation 'io.rest-assured:spring-mock-mvc:4.3.0'
+	componentTestCompile 'io.rest-assured:json-path:4.4.0'
+	componentTestCompile 'io.rest-assured:xml-path:4.4.0'
+
+	componentTestImplementation 'io.rest-assured:spring-mock-mvc:4.4.0'
+	componentTestImplementation 'org.mockito:mockito-core:1.10.19'
+	componentTestImplementation 'io.rest-assured:json-schema-validator:4.4.0'
 }
 
 dependencyManagement {
