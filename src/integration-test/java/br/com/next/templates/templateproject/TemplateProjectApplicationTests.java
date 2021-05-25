@@ -1,7 +1,7 @@
 package br.com.next.templates.templateproject;
 
 import br.com.next.templates.templateproject.entity.Product;
-import br.com.next.templates.templateproject.external.data.ListProducts;
+import br.com.next.templates.templateproject.usecase.ListProducts;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
