@@ -26,7 +26,12 @@ public class ProductController {
     public List<Product> allProducts() {
         return listProducts.execute();
     }
-    
+
+    @PostMapping("/")
+    public ResponseEntity registerProduct(@RequestBody Product product) {
+        registerProduct.execute(product);
+        return  ResponseEntity.created(URI.create("http://localhost:8080/products/")).build();
+    }
 }
 
 

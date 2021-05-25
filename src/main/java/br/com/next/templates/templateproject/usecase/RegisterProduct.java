@@ -9,8 +9,10 @@ import org.springframework.stereotype.Component;
 public class RegisterProduct {
 
     private final InsertProduct insertProduct;
+    private final ExposeProduct exposeProduct;
 
     public void execute(final Product product) {
-        insertProduct.insert(product);
+        Product createdProduct = insertProduct.insert(product);
+        exposeProduct.publish(createdProduct);
     }
 }

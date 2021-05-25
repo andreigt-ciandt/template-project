@@ -7,6 +7,12 @@ spring:
     username: teste@template-trial-postgres.postgres.database.azure.com
     password: y0u5h0ldCh4ng3M3
     url: jdbc:postgresql://template-trial-postgres.postgres.database.azure.com:5432/template-postgres
+  jms:
+    servicebus:
+      connection-string: Endpoint=sb://template-message.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=9uKrZfmQ/RTOZ7Mwp3yHWzmcwEXBo3Kmie6wG6+XRaw=
+      topic-client-id: template-trial-client-id
+      idle-timeout: 1800000
+      pricing-tier: standard
 
 management:
   endpoint:

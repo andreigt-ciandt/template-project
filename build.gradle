@@ -54,6 +54,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'com.azure.spring:azure-spring-boot-starter'
+	implementation 'com.azure.spring:azure-spring-boot-starter-servicebus-jms'
 	implementation 'org.postgresql:postgresql'
 
 	testCompile "org.codehaus.groovy:groovy:3.0.7"
