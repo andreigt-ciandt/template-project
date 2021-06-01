@@ -28,9 +28,10 @@ public class PropertiesController {
 
     @GetMapping("/toggles")
     @ResponseStatus(HttpStatus.OK)
-    public Map<String, Boolean> allFeatures() {
-        return ff4j.getFeatures().entrySet()
+    public PropertiesData allFeatures() {
+        return PropertiesData.builder().features(ff4j.getFeatures().entrySet()
                 .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().isEnable()));
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().isEnable())))
+                .build();
     }
 }
